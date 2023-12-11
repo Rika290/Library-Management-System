@@ -1,0 +1,89 @@
+-- Library Management System:-
+use LMS;
+create database LMS;
+create table Books(Book_ID varchar(225),Book_name varchar(255),Author_name varchar(255),primary key(Book_ID));
+insert into Books value("B001","Let's run Python","Amit");
+select * from Books;
+update Books set Author_name="Amit Singh" where Book_ID="B001";
+delete from Books where Book_ID="B001";
+drop table Books;
+create table Books(Book_ID varchar(255),Book_name varchar(255),Author_name varchar(255),primary key(BOOK_ID));
+insert into Books value("B001","Banyan Moon","Thao Thai");
+insert into Books value("B002","Charlotte's Web","E.B.White");
+insert into Books value ("B003","To Kill A Mockingbird","Harper Lee");
+insert into Books value("B004","Catcher in the Rye","J.D.Salinger");
+insert into Books value("B005","Animal Farm","George Orwell");
+select * from Books;
+create table Users(UserID varchar(255),User_password varchar(255),primary key(UserID));
+insert into Users value("I01","Dt234_in");
+insert into Users value("I02","Riy564!o");
+select * from Users;
+update Users set User_password="Ft8932-98" where UserID="I01";
+drop table Users;
+select * from Users;
+select * from Books;
+insert into Users value("I03","ty53cS-12");
+insert into Users value("I04","t5638hy.1");
+insert into Users value("I05","hr61!+93");
+select * from Users;
+create table Admin_info (AdminID varchar(255),Admin_pswd varchar(255), primary key(AdminID));
+insert into Admin_info value("AI01","ad032_1");
+insert into Admin_info value("AI02","ae83b.3D");
+insert into Admin_info value("AI03","ge77,D!98");
+insert into Admin_info value("AI04","ki9,38YY02");
+insert into Admin_info value("AI05","kl;pe02Q1");
+select * from Admin_info;
+update Admin_info set Admin_pswd="hier6--I" where AdminID="AI04";
+select * from Admin_info
+where  not AdminID="AI01";
+select * from Books
+order by Book_name;
+select * from books
+order by Book_name DESC;
+select * from Admin_info;
+select * from Books;
+update Books set Book_name="Catcher in the Eye" where Book_ID="B004";
+select * from Books;
+update Books set Book_name="Catcher in the Rye" where Book_ID="B004";
+select * from Books;
+insert into Books value("B006","Gulliver's Travels","Jonathan Swift");
+insert into Books value("B0007","Go set a Watchman","Harper Lee");
+select * from Books
+where Author_name="Harper Lee" and not Book_ID="B0007";
+update Books set  Book_ID="B007" where  Book_ID="B0007";
+select * from Books;
+select * from Admin_info;
+select * from Users;
+create table Issue_Book(Issue_datetime varchar(255),BookID varchar(255),user_ID varchar(255),primary key(Issue_datetime));
+update Books set Book_ID="B010" where Book_ID="B011";
+insert into Users value("I07","hui887.3");
+insert into Users(UserID,User_password) values("I08","ji88uIo-*");
+insert into Books value("B006","Gulliver's Travels","Jonathan Swift");
+insert into Books value("B007","Go set a Watchman","Harper Lee");
+insert into Books value("B008","Wings of Fire","Dr.A.P.J. Abdul Kalam");
+insert into Books value("B009","Helloo","Drika");
+insert into Books value("B010","Ikigai","Francis");
+insert into Books value("B011","The Hitchhiker's Guide to the Galaxy",'Douglas Adams');
+insert into books values('B012','The Happiness Hypothesis','Jonathan Haidt'),('B013','A Separate Peace','John Knowles'),
+('B014','Bridge to Terabithia','Katherine Paterson'),('B015','Alexander Hamilton','Ron Chernow'),('B016','The Journey Matters','Jonathan Glancey'),
+('B017','Helter Skelter','Vincent Bugliosi'),('B018','The Stranger Beside Me','Ann Rule'),('B019','The Picture of Dorian Gray','Oscar Wilde'),
+('B020','Yours Cheerfully',' AJ Pearce');
+update books set Author='AJ Pearce' where BookID='B020';
+
+insert into books values('B021','Sapiens: A Brief History of Humankind','Yuval Noah Harari'),('B022','Little Women','Louisa May Alcott'),
+('B023','Holes','Louis Sachar'),('B024',' Charlie and the Chocolate Factory','Roald Dahl'),('B025','The Story Of My Experiments With Truth','Mahatma Gandhi'),
+('B026','The Immortal Life of Henrietta Lacks',' Rebecca Skloot'),('B027','The General Theory of Employment, Interest and Money','John Maynard Keynes'),
+('B028','Plutocrats','Chrystia Freeland'),('B029',"Midnight's Children",'Salman Rushdie'),('B030','Animal Farm','George Orwell'),
+('B031','Lord of the Flies','William Golding'),('B032','A Tale of Two Cities','Charles Dickens'),('B033','The Hobbit','J. R. R. Tolkien'),
+('B034','The Hunger Games','Suzanne Collins'),('B035','Neuromancer','William Gibson'),('B036','The Left Hand of Darkness','Ursula K. Le Guin'),
+('B037','Space Boy','Stephen McCranie'),('B038','The Happiness Hypothesis','Jonathan Haidt'),('B039','A Little Life','Hanya Yanagihara'),
+('B040','The Hanging of Afzal Guru','Arundhati Roy'),('B041','The Untethered Soul: The Journey Beyond Yourself','Michael A. Singer'),
+('B042','The Immortals of Meluha','Amish Tripathi'),('B043','The Sun and Her Flowers','Rupi Kaur'),('B044','Devotions','Mary Oliver'),
+('B045','Songs of Innocence and of Experience','William Blake'),('B046','The Book Thief','Markus Zusak'),('B047','Pachinko','Min Jin Lee'),
+('B048','The Tale of Genji','Murasaki Shikibu'),('B049','The Road','Cormac McCarthy'),('B050','India: The Future is Now','Shashi Tharoor');
+
+
+select * from admin_info;
+select * from users;
+select * from issue_book;
+select * from books;
