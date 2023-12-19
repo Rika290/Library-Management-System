@@ -128,7 +128,7 @@ elif choice=="Admin Login":
                 st.header("SORRY 😢. Incorrect ID or Password. Please try again later")
     if(st.session_state['login']):
         st.header("You logged in successfully 😁👍")
-        ch2=st.selectbox("Select",("📚","View Books","Add Books",'View issued books'))
+        ch2=st.selectbox("Select",("📚","View Books","Add Books","Remove Books",'View issued books'))
         if(ch2=="📚"):
             st.image("https://cdn.gtricks.com/2019/09/5-book-reading-android-apps-to-read-and-manage-books-for-free-1280x720.jpg")
         elif(ch2=="View Books"):
@@ -151,6 +151,15 @@ elif choice=="Admin Login":
                 c.execute("insert into Books values(%s,%s,%s)",(x,y,z))
                 mydb.commit()
                 st.header("Book added successfully")
+        elif(ch2=="Remove Books"):            
+            x=st.text_input("Enter the Book_ID")            
+            bti=st.button("Remove")
+            if bti:
+                mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
+                c=mydb.cursor()
+                c.execute("delete from books where id=(%s,)",(x,))
+                mydb.commit()
+                st.header("Book removed successfully")
         else:
             mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
             c=mydb.cursor()
