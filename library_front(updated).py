@@ -105,7 +105,7 @@ elif choice=="Student Login":
                 c=mydb.cursor()
                 c.execute("insert into Issue_book values(%s,%s,%s)",(dt,B,d))
                 mydb.commit()
-                st.header("Book issued successfully")
+                st.header("Book issued successfully😁👍")
 elif choice=="Admin Login":
     st.image("https://img.freepik.com/premium-vector/librarian-concept-library-staff-cataloguing-sorting-books-knowledge-education-idea-llibrary-bookshelves-guid-isolated-vector-illustration_613284-1665.jpg")
     st.text("Hello Admin 😎 Please enter your UserID and Password")
@@ -144,22 +144,23 @@ elif choice=="Admin Login":
             x=st.text_input("Enter the Book_ID")
             y=st.text_input("Enter the book name")
             z=st.text_input("Enter the author name")
+            k=st.text_input("Enter the genre")
             bti=st.button("Add")
             if bti:
                 mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
                 c=mydb.cursor()
-                c.execute("insert into Books values(%s,%s,%s)",(x,y,z))
+                c.execute("insert into Books values(%s,%s,%s,%s)",(x,y,z,k))
                 mydb.commit()
-                st.header("Book added successfully")
+                st.header("Book added successfully😁👍")
         elif(ch2=="Remove Books"):            
             x=st.text_input("Enter the Book_ID")            
             bti=st.button("Remove")
             if bti:
                 mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
                 c=mydb.cursor()
-                c.execute("delete from books where id=(%s,)",(x,))
+                c.execute("delete from books where BookID=%s",(x,))
                 mydb.commit()
-                st.header("Book removed successfully")
+                st.header("Book removed successfully😁👍")
         else:
             mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
             c=mydb.cursor()
