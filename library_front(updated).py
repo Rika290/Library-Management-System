@@ -34,10 +34,60 @@ elif choice=="Student Login":
                 st.header("SORRY 😢. Incorrect ID or Password. Please try again later")
     if(st.session_state['login']):
         st.header("You logged in successfully 😁👍")
-        ch1=st.selectbox("Choose",("🏠","View books📚","Issue books 📖📖"))
+        ch1=st.selectbox("Choose",("🏠","Search🔍","View books📚","Issue books 📖📖"))
         if(ch1=="🏠"):
-            st.image("https://cdn.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_640.jpg")
+            st.image("https://cdn.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_640.jpg")        
+        elif(ch1=='Search🔍'):
+            st.image('https://www.venminder.com/hubfs/Blog_Images/2022_Blog_Posts/04.12.2022-record-retention-how-long-do-you-keep-vendor-documents-FEATURED.jpg')                                            
+            j=st.checkbox('By Genre',)
+            if j:
+                a=mysql.connector.connect(host='localhost',user='root',password='abcde123',database='LMS')
+                c=a.cursor()
+                c.execute('select distinct genre from  books order by genre')
+                l=[]
+                for i in c:
+                    l.append(i)
+                df=pd.DataFrame(data=l,columns=c.column_names)
+                st.table(df)                
+                i=st.text_input("Enter the genre")
+                a=mysql.connector.connect(host='localhost',user='root',password='abcde123',database='LMS')
+                c=a.cursor()
+                c.execute('select * from  books where genre=%s',(i,))
+                l=[]
+                for i in c:
+                    l.append(i)
+                df=pd.DataFrame(data=l,columns=c.column_names)
+                st.dataframe(df)                    
         elif(ch1=="View books📚"):
+            cv=st.selectbox('Select',('View all','View all Authors','View all Genres'))
+            if(cv=='View all'):
+                mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
+                c=mydb.cursor()
+                c.execute("select * from Books")
+                b=[]
+                for i in c:
+                    b.append(i)
+                df=pd.DataFrame(data=b,columns=c.column_names)
+                st.dataframe(df)
+            elif(cv=='View all Authors'):
+                mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
+                c=mydb.cursor()
+                c.execute("select distinct author from books")
+                b=[]
+                for i in c:
+                    b.append(i)
+                df=pd.DataFrame(data=b,columns=c.column_names)
+                st.dataframe(df)
+            else:
+                mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
+                c=mydb.cursor()
+                c.execute("select distinct genre from books")
+                b=[]
+                for i in c:
+                    b.append(i)
+                df=pd.DataFrame(data=b,columns=c.column_names)
+                st.dataframe(df)
+        elif(ch1=="Issue books 📖📖"):
             mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
             c=mydb.cursor()
             c.execute("select * from Books")
@@ -45,8 +95,7 @@ elif choice=="Student Login":
             for i in c:
                 b.append(i)
             df=pd.DataFrame(data=b,columns=c.column_names)
-            st.dataframe(df)
-        elif(ch1=="Issue books 📖📖"):
+            st.dataframe(df)            
             B=st.text_input("Enter the book id")
             d=st.text_input("Enter your ID")
             btt=st.button("Issue")
@@ -79,7 +128,7 @@ elif choice=="Admin Login":
                 st.header("SORRY 😢. Incorrect ID or Password. Please try again later")
     if(st.session_state['login']):
         st.header("You logged in successfully 😁👍")
-        ch2=st.selectbox("Select",("📚","View Books","Add Books"))
+        ch2=st.selectbox("Select",("📚","View Books","Add Books",'View issued books'))
         if(ch2=="📚"):
             st.image("https://cdn.gtricks.com/2019/09/5-book-reading-android-apps-to-read-and-manage-books-for-free-1280x720.jpg")
         elif(ch2=="View Books"):
@@ -102,16 +151,26 @@ elif choice=="Admin Login":
                 c.execute("insert into Books values(%s,%s,%s)",(x,y,z))
                 mydb.commit()
                 st.header("Book added successfully")
+        else:
+            mydb=mysql.connector.connect(host="localhost",user="root",password="abcde123",database="LMS")
+            c=mydb.cursor()
+            c.execute("select * from issue_book")
+            b=[]
+            for i in c:
+                b.append(i)
+            df=pd.DataFrame(data=b,columns=c.column_names)
+            st.dataframe(df)   
+            
     
             
                   
         
         
     
-        
-        
-      
-            
 
-    
-
+        
+                
+                
+        
+                
+        
